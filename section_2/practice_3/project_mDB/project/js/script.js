@@ -60,14 +60,17 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     };
     
+
     const changeGenre = (arrGenres) => {
         arrGenres[0].textContent = 'драма';
     };
 
+
+    const changeBackground = (arrToChange) => {
+        arrToChange[0].style.background = 'url("img/bg.jpg") center center/cover no-repeat';
+    }; 
     
-    backChanging[0].style.background = 'url("img/bg.jpg") center center/cover no-repeat';
-      
-    
+
     function rewriteLoop(){
         listOfFilms.innerHTML = '';
         movieDB.movies.sort().forEach((movieName, k) => {
@@ -79,7 +82,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
     
-    rewriteLoop();
     
     listOfFilms.addEventListener('click', (event) => {
         if (event.target.classList.contains('delete')) {
@@ -92,7 +94,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         }
     });
-
+    
     
     confirmationButton.addEventListener('click', () => {
         if (input.value.trim().length > 0){
@@ -121,6 +123,8 @@ document.addEventListener('DOMContentLoaded', () => {
     
     deleteAdv(promoVirus);
     changeGenre(genreChanging);
+    changeBackground(backChanging);
+    rewriteLoop();    
     
 });
 
