@@ -1,6 +1,5 @@
-function timer () {
-  //Timer
-  const deadLine = '2022-12-31';
+//Timer
+function timer (id, deadLine) {
 
   function getTimeRenaming(endtime) {
     let days, hours, minutes, seconds;
@@ -59,7 +58,7 @@ function timer () {
     }
   }
 
-  setClock('.timer', deadLine);
+  setClock(id, deadLine);
 }
 
-module.exports = timer;
+export default timer;

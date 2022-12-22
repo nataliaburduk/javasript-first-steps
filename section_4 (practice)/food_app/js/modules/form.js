@@ -1,7 +1,10 @@
-function form() {
+import { closeModal, openModal} from "./modal_window";
+import { postData } from "../services/services";
+
+function form(formSelector, modalTimerId) {
   //AJAX
 
-  const forms = document.querySelectorAll('form');
+  const forms = document.querySelectorAll(formSelector);
 
   const message = {
     loading: 'img/form/spinner.svg',
@@ -13,17 +16,7 @@ function form() {
     bindPostData(item);
   });
 
-  const postData = async (url, data) => {
-    const res = await fetch(url, {
-      method: 'POST',
-      headers: {
-        'Content-type': 'application/json'
-      },
-      body: data
-    });
-
-    return await res.json(); // здесь возвращается промис, мы должны дождаться, пока выполнится первая функция внутри await, а потом дождаться, когда вернутся промис с await
-  };
+  
 
   function bindPostData(form) {
     form.addEventListener('submit', (e) => {
@@ -61,7 +54,7 @@ function form() {
 
     const prevModalDialog = document.querySelector('.modal__dialog');
     prevModalDialog.classList.add('hide');
-    openModal();
+    openModal('.modal', modalTimerId);
 
 
     const thanksModal = document.createElement('div');
@@ -78,21 +71,13 @@ function form() {
       thanksModal.remove();
       prevModalDialog.classList.add('show');
       prevModalDialog.classList.remove('hide');
-      closeModal();
+      closeModal('.modal');
     }, 4000);
 
 
   }
 
-  const getResource = async (url) => {
-    const res = await fetch(url);
-
-    if (!res.ok) {
-      throw new Error(`Could not fetch ${url}, status: ${res.status}`);
-    }
-
-    return await res.json(); // здесь возвращается промис, мы должны дождаться, пока выполнится первая функция внутри await, а потом дождаться, когда вернутся промис с await
-  };
+  
 }
 
-module.exports = form;
+export default form;

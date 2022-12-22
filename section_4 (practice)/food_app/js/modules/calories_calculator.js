@@ -111,4 +111,4 @@ function calCalculator() {
 
 }
 
-module.exports = calCalculator;
+export default calCalculator;
